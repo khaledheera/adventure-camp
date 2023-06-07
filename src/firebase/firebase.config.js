@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAa8ahZtGENH-DgCAFuHtzQ_3RLO1Wi_DA",
-  authDomain: "adventura-camp.firebaseapp.com",
-  projectId: "adventura-camp",
-  storageBucket: "adventura-camp.appspot.com",
-  messagingSenderId: "367217182097",
-  appId: "1:367217182097:web:ecdab50530db7d63520630"
+  apiKey:import.meta.env.VITE_apiKey,
+	authDomain:import.meta.env.VITE_authDomain,
+	projectId: import.meta.VITE_projectId,
+	storageBucket: import.meta.env.VITE_storageBucket,
+	messagingSenderId:import.meta.env.VITE_messagingSenderId,
+	appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
