@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import "./navbar.css";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import {  FaUserAlt } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/blogs"
+          to="/instructor"
           className={`font-medium rounded-xl  hover:underline duration-500 ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
@@ -77,6 +78,35 @@ const Navbar = () => {
           </li>
         </>
       )}
+
+<li>
+                <Link >
+                  {user?.photoURL ? (
+                    <div
+                      className="tooltip tooltip-bottom tooltip-info"
+                      data-tip={user?.displayName}
+                    >
+                      <div className="avatar online w-12 h-12">
+                        <img
+                          src={user.photoURL}
+                          alt=""
+                          className=" rounded-full "
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="tooltip tooltip-bottom tooltip-info"
+                      data-tip={user?.displayName}
+                    >
+                      <FaUserAlt className="w-6 h-6 text-white" />
+                    </div>
+                  )}
+                </Link>
+              </li>
+
+
+
       <div className="md:flex items-center cursor-pointer block mx-auto ">
         <span onClick={handleToggleTheme}>
           {theme ? (

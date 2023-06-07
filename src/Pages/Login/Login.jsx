@@ -6,7 +6,7 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 import { AuthContext } from '../../providers/AuthProvider'
 
 const Login = () => {
-  const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
+  const { loading, setLoading, signIn,  googleSignIn } =
     useContext(AuthContext)
   const navigate = useNavigate()
   const location = useLocation()
@@ -31,7 +31,7 @@ const Login = () => {
 
   // Handle google signin
   const handleGoogleSignIn = () => {
-    signInWithGoogle()
+    googleSignIn()
       .then(result => {
         console.log(result.user)
         navigate(from, { replace: true })
@@ -43,21 +43,7 @@ const Login = () => {
       })
   }
 
-  //   handle password reset
-  const handleReset = () => {
-    const email = emailRef.current.value
-
-    resetPassword(email)
-      .then(() => {
-        toast.success('Please check your email for reset link')
-        setLoading(false)
-      })
-      .catch(err => {
-        setLoading(false)
-        console.log(err.message)
-        toast.error(err.message)
-      })
-  }
+  
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -121,7 +107,6 @@ const Login = () => {
         </form>
         <div className='space-y-1'>
           <button
-            onClick={handleReset}
             className='text-xs hover:underline hover:text-sky-950 text-gray-400'
           >
             Forgot password?
