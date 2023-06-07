@@ -2,8 +2,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
 import { useContext, useRef } from 'react'
-import { AuthContext } from '../../providers/AuthProvider'
 import { TbFidgetSpinner } from 'react-icons/tb'
+import { AuthContext } from '../../providers/AuthProvider'
 
 const Login = () => {
   const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
@@ -109,12 +109,12 @@ const Login = () => {
           <div>
             <button
               type='submit'
-              className='bg-rose-500 w-full rounded-md py-3 text-white'
+              className='bg-sky-950 w-full rounded-md py-3 text-white'
             >
               {loading ? (
                 <TbFidgetSpinner className='m-auto animate-spin' size={24} />
               ) : (
-                'Continue'
+                'LogIn'
               )}
             </button>
           </div>
@@ -122,7 +122,7 @@ const Login = () => {
         <div className='space-y-1'>
           <button
             onClick={handleReset}
-            className='text-xs hover:underline hover:text-rose-500 text-gray-400'
+            className='text-xs hover:underline hover:text-sky-950 text-gray-400'
           >
             Forgot password?
           </button>
@@ -146,7 +146,7 @@ const Login = () => {
           Don't have an account yet?{' '}
           <Link
             to='/signup'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+            className='hover:underline hover:text-sky-950 text-gray-600'
           >
             Sign up
           </Link>
