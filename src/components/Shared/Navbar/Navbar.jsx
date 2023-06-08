@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo/logo.png";
 import "./navbar.css";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import {  FaUserAlt } from "react-icons/fa";

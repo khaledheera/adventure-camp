@@ -2,11 +2,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
 import { useContext, useRef } from 'react'
-import { TbFidgetSpinner } from 'react-icons/tb'
 import { AuthContext } from '../../providers/AuthProvider'
+import { TbFidgetSpinner } from 'react-icons/tb'
+import { saveUser } from '../../Api/auth'
+
 
 const Login = () => {
-  const { loading, setLoading, signIn,  googleSignIn } =
+  const { loading, setLoading, signIn,  googleSignIn, resetPassword } =
     useContext(AuthContext)
   const navigate = useNavigate()
   const location = useLocation()
@@ -34,6 +36,8 @@ const Login = () => {
     googleSignIn()
       .then(result => {
         console.log(result.user)
+        // save user to db
+        saveUser(result.user)
         navigate(from, { replace: true })
       })
       .catch(err => {
@@ -43,7 +47,21 @@ const Login = () => {
       })
   }
 
-  
+  //   handle password reset
+  const handleReset = () => {
+    const email = emailRef.current.value
+
+    resetPassword(email)
+      .then(() => {
+        toast.success('Please check your email for reset link')
+        setLoading(false)
+      })
+      .catch(err => {
+        setLoading(false)
+        console.log(err.message)
+        toast.error(err.message)
+      })
+  }
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -95,19 +113,20 @@ const Login = () => {
           <div>
             <button
               type='submit'
-              className='bg-sky-950 w-full rounded-md py-3 text-white'
+              className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
               {loading ? (
                 <TbFidgetSpinner className='m-auto animate-spin' size={24} />
               ) : (
-                'LogIn'
+                'Continue'
               )}
             </button>
           </div>
         </form>
         <div className='space-y-1'>
           <button
-            className='text-xs hover:underline hover:text-sky-950 text-gray-400'
+            onClick={handleReset}
+            className='text-xs hover:underline hover:text-rose-500 text-gray-400'
           >
             Forgot password?
           </button>
@@ -131,7 +150,7 @@ const Login = () => {
           Don't have an account yet?{' '}
           <Link
             to='/signup'
-            className='hover:underline hover:text-sky-950 text-gray-600'
+            className='hover:underline hover:text-rose-500 text-gray-600'
           >
             Sign up
           </Link>

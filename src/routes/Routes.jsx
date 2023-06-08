@@ -4,25 +4,39 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Instructor from "../Pages/Instructor/Instructor";
+import DashboardLayout from "../layouts/DashboardLayout";
 
-export const router = createBrowserRouter(
-    [
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/instructor",
+        element: <Instructor />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path:"/dashboard",
+    element:<DashboardLayout/>,
+    children:[
         {
-            path:'/',
-            element:<Main/>,
-            children:[
-                {
-                    path:"/",
-                    element:<Home/>
-                },
-                {
-                    path:"/instructor",
-                    element:<Instructor/>
-                }
-            ]
-            
-        },
-        { path: '/login', element: <Login/> },
-  { path: '/signup', element: <SignUp/> },
+           
+        }
     ]
-)
+    
+  }
+]);
