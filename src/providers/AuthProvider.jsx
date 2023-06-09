@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import app from './../firebase/firebase.config';
 import { createContext, useEffect, useState } from 'react';
+import { getRole } from '../Api/auth';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -17,9 +18,14 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
 	const googleProvider = new GoogleAuthProvider();
 	const [user, setUser] = useState(null);
+	const [role, setRole] = useState(null)
 	const [loading, setLoading] = useState(true);
 
-
+	useEffect(() => {
+		if (user) {
+		  getRole(user.email).then(data => setRole(data))
+		}
+	  }, [user])
 	// handle theme change
 
 	const [theme, setTheme] = useState(false);
@@ -92,6 +98,8 @@ const AuthProvider = ({ children }) => {
 		logOut,
 		theme,
 		handleToggleTheme,
+		role,
+		setRole,
 	};
 
 	return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;

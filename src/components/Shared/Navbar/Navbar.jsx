@@ -1,16 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo/logo.png";
 import "./navbar.css";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import {  FaUserAlt } from "react-icons/fa";
+import { AiOutlineMenu } from 'react-icons/ai'
 import { AuthContext } from "../../../providers/AuthProvider";
+import { becomeInstructor } from "../../../Api/auth";
+import RequestModal from "../../Modal/RequestModal";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOut, theme, handleToggleTheme } = useContext(AuthContext);
+  const { user, logOut, theme, handleToggleTheme ,role, setRole} = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false)
+  const [modal, setModal] = useState(false)
+  
+
+  console.log(role)
+  const modalHandler = email => {
+    becomeInstructor(email).then(data => {
+      console.log(data)
+      toast.success('You are Instructor now, Post Class!')
+      setRole('instructor')
+      closeModal()
+    })
+  }
+  const closeModal = () => {
+    setModal(false)
+  }
+
+
 
   const menuItems = (
-    <React.Fragment>
+    <React.Fragment >
       <li>
         <NavLink
           to="/"
@@ -24,7 +46,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/instructor"
-          className={`font-medium rounded-xl  hover:underline duration-500 ${(
+          className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold  hover:underline duration-500 ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
         >
@@ -34,7 +56,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/blogs"
-          className={`font-medium rounded-xl  hover:underline duration-500 ${(
+          className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold hover:underline duration-500 ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
         >
@@ -43,41 +65,78 @@ const Navbar = () => {
       </li>
       
 
-      {user?.uid ? (
-        <>
-          <li>
-            <NavLink
-              to="/dashboard"
-              className={`font-medium rounded-xl  hover:underline duration-500 ${(
-                isActive
-              ) => (isActive ? "active" : undefined)}`}
-            >
-              Dashboard
-            </NavLink>
-          </li>
-          <li>
+      
+      
+      <div className='relative'>
+      <div className='flex flex-row items-center gap-3'>
+        <div className='hidden md:block text-sm font-semibold rounded-full py-3 px-8   transition'>
+          {!role && (
             <button
-              onClick={logOut}
-              className="inline-block rounded border border-[#20609B]  px-8 py-3 text-sm font-medium    focus:outline-none focus:ring active:text-indigo-500"
+              className='cursor-pointer hover:bg-neutral-100 py-3 px-4 '
+              onClick={() => setModal(true)}
+              disabled={!user}
             >
-              LogOut
+              Instructor?
             </button>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <NavLink
-              className={`font-medium rounded-xl  hover:underline duration-500 ${(
-                isActive
-              ) => (isActive ? "active" : undefined)}`}
-              to="/login"
+          )}
+        </div>
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+        >
+          <AiOutlineMenu />
+          
+        </div>
+      </div>
+      {isOpen && (
+        <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
+          <div className='flex flex-col cursor-pointer'>
+            <Link
+              to='/'
+              className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
             >
-              Login
-            </NavLink>
-          </li>
-        </>
+              Home
+            </Link>
+            {user ? (
+              <>
+                <Link
+                  to='/dashboard'
+                  className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                >
+                  Dashboard
+                </Link>
+
+                <div
+                  onClick={() => {
+                    setRole(null)
+                    logOut()
+                  }}
+                  className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                >
+                  Logout
+                </div>
+              </>
+            ) : (
+              <>
+                <Link
+                  to='/login'
+                  className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                >
+                  Login
+                </Link>
+                <Link
+                  to='/signup'
+                  className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
       )}
+     
+    </div>
 
 <li>
                 <Link >
@@ -182,6 +241,14 @@ const Navbar = () => {
           </label>
         </div>
       </div>
+      <RequestModal
+        email={user?.email}
+        modalHandler={modalHandler}
+        isOpen={modal}
+        closeModal={closeModal}
+      />
+      
+
     </div>
   );
 };
