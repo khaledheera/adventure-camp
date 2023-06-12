@@ -8,6 +8,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute'
 import AllUsers from '../../Dashboard/AllUsers'
 import Classes from '../../Pages/Classes/Classes'
 import AddClasses from '../../Dashboard/AddClasses'
+import ManageClasses from '../../Dashboard/ManageClasses'
 
 // import InstructorClasses from '../../Dashboard/InstructorClasses'
 
@@ -51,7 +52,11 @@ export const router = createBrowserRouter([
         {
           path:"/dashboard/AllUsers",
           element:<PrivateRoute><AllUsers/></PrivateRoute>
-        }
+        },
+        {
+          path:"/dashboard/manageClasses",
+          element:<PrivateRoute> <ManageClasses/> </PrivateRoute>
+        },
     ]
     
   }

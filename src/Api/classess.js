@@ -13,7 +13,7 @@ export const addClass= async classData => {
   }
 
   export const getAllClasses = async () => {
-    const response = await fetch(`http://localhost:5000/allClasses`)
+    const response = await fetch(`http://localhost:5000/addClasses`)
     const data = await response.json()
     return data
   }

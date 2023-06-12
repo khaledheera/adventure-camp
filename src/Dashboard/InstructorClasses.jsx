@@ -10,7 +10,7 @@ const InstructorClasses = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/classes/${user?.email}`)
+    fetch(`http://localhost:5000/addclasses/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

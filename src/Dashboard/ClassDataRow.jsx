@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ClassDataRow = ({classs}) => {
-    const{image,className,price}=classs
+    const{image, className, students, instructor_name,instructor_email, availableSeats, price }=classs
     return (
     
             <tr>
@@ -22,9 +22,29 @@ const ClassDataRow = ({classs}) => {
           </div>
         </div>
       </td>
-
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
+      <p className="mb-2   leading-none ">
+        {instructor_name}
+      </p>
+      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
+      <p className="mb-2  leading-none ">
+        {instructor_email}
+      </p>
+      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
+      <p className="mb-2   leading-none" >
+        {availableSeats}
+      </p>
+      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
         <p className='text-gray-900 whitespace-no-wrap'>${price}</p>
+      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
+      <div className='flex justify-center'><span className='btn btn-success'>Approve</span>
+      <span className='btn btn-warning'>Deny</span>
+      <span className='btn btn-neutral'>send feedback</span></div>
+
       </td>
     
                 
