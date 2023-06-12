@@ -8,8 +8,9 @@ import {
 	signOut,
 	updateProfile,
 } from 'firebase/auth';
+import React, { createContext, useEffect, useState } from 'react';
+import axios from "axios";
 import app from './../firebase/firebase.config';
-import { createContext, useEffect, useState } from 'react';
 import { getRole } from '../Api/auth';
 
 export const AuthContext = createContext();
@@ -18,14 +19,15 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
 	const googleProvider = new GoogleAuthProvider();
 	const [user, setUser] = useState(null);
-	const [role, setRole] = useState(null)
 	const [loading, setLoading] = useState(true);
+	const [role, setRole] = useState(null)
 
 	useEffect(() => {
 		if (user) {
 		  getRole(user.email).then(data => setRole(data))
 		}
 	  }, [user])
+
 	// handle theme change
 
 	const [theme, setTheme] = useState(false);
@@ -79,13 +81,29 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-			setUser(currentUser);
-			setLoading(false);
-		});
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            console.log('current user', currentUser);
 
-		return () => unsubscribe();
-	}, []);
+            // get and set token
+            if(currentUser){
+                axios.post('http://localhost:5000/jwt', {email: currentUser.email})
+                .then(data =>{
+                    // console.log(data.data.token)
+                    localStorage.setItem('access-token', data.data.token)
+                    setLoading(false);
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+            }
+
+            
+        });
+        return () => {
+            return unsubscribe();
+        }
+    }, [])
 
 	const authInfo = {
 		user,

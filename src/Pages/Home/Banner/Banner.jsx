@@ -1,14 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 
-import './styles.css';
+import "./styles.css";
 
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper";
 
 
 import banner1 from "../../../assets/images/Banner/yogendra-singh-ResjcGoMRRI-unsplash.jpg";
@@ -22,8 +24,7 @@ import banner8 from "../../../assets/images/Banner/christopher-campbell-syyBwqVX
 import banner9 from "../../../assets/images/Banner/ruben-leija-Qlrcw3yOKec-unsplash.jpg";
 
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper';
+
 
 const Banner = () => {
   const progressCircle = useRef(null);
@@ -34,42 +35,58 @@ const Banner = () => {
   };
     return (
         <div className=''>
-         <Swiper
-        spaceBetween={30}
+          <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
         centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        pagination={true}
+        modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={banner2} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner3} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner4} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner5} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner7} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner8} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner9} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={banner1} alt="" /></SwiperSlide>
-        
-        <div className="autoplay-progress" slot="container-end">
-          <svg viewBox="0 0 48 48" ref={progressCircle}>
-            <circle cx="24" cy="24" r="20"></circle>
-          </svg>
-          <span ref={progressContent}></span>
-        </div>
+        <SwiperSlide>
+          <img src={banner1} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner2} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner3} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner4} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner5} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner8} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner7} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={banner9} />
+        </SwiperSlide>
+       
       </Swiper>
       </div>
     );
 };
 
 export default Banner;
+
+
+
+
+
 
 
 

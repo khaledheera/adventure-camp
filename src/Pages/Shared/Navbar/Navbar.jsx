@@ -4,7 +4,7 @@ import logo from "../../../assets/images/logo/logo.png";
 import "./navbar.css";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import {  FaUserAlt } from "react-icons/fa";
-import { AuthContext } from "../../../providers/AuthProvider";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut, theme, handleToggleTheme } = useContext(AuthContext);
@@ -33,7 +33,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/blogs"
+          to="/classes"
           className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}

@@ -1,12 +1,15 @@
 import React from 'react'
 import { TbFidgetSpinner } from 'react-icons/tb'
+import useAuth from '../Hook/useAuth'
 
 const AddClassForm = ({
   handleSubmit,
   handleImageChange,
   uploadButtonText,
   loading = false,
+ 
 }) => {
+  const {user} = useAuth();
   return (
     <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50 '>
       <form onSubmit={handleSubmit}>
@@ -49,15 +52,14 @@ const AddClassForm = ({
             </div>
             <div className='flex justify-between gap-2'>
               <div className='space-y-1 text-sm'>
-                <label htmlFor='price' className='block text-gray-600'>
-                  Price
-                </label>
+                
                 <div className='space-y-1 text-sm'>
               <label htmlFor='title' className='block text-gray-600'>
               Instructor Name
               </label>
               <input
                 className='w-full px-4 py-3 text-gray-800 border border-sky-300 focus:outline-sky-500 rounded-md '
+                defaultValue={user.displayName}
                 name='instructor_name'
                 id='instructor name'
                 type='text'
@@ -71,6 +73,7 @@ const AddClassForm = ({
               </label>
               <input
                 className='w-full px-4 py-3 text-gray-800 border border-sky-300 focus:outline-sky-500 rounded-md '
+                defaultValue={user.email}
                 name='email'
                 id='title'
                 type='email'

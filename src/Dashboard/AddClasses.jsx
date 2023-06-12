@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import AddClassForm from './AddClassForm';
-import { AuthContext } from '../../providers/AuthProvider';
+import { AuthContext } from '../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { imageUpload } from '../../Api/utils';
-import { addClass } from '../../Api/classess';
+import { imageUpload } from '../Api/utils';
+import { addClass } from '../Api/classess';
 
 const AddClasses = () => {
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ const AddClasses = () => {
               setUploadButtonText('Uploaded!')
               setLoading(false)
               toast.success('Class Added!')
-              navigate('/dashboard/my-listings')
+              navigate('/Classes')
             })
             .catch(err => console.log(err))
   
@@ -82,3 +82,8 @@ const AddClasses = () => {
 };
 
 export default AddClasses;
+
+
+
+
+

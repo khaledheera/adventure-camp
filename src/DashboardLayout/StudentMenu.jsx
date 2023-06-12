@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom'
 import { BsFingerprint } from 'react-icons/bs'
 import { GrUserAdmin } from 'react-icons/gr'
 import React, { useContext, useState } from "react";
-import { AuthContext } from '../../providers/AuthProvider'
-import RequestModal from '../../components/Modal/RequestModal'
-import { becomeInstructor } from '../../Api/auth'
+import { AuthContext } from '../Provider/AuthProvider'
+import RequestModal from '../Dashboard/Modal/RequestModal'
+import { becomeInstructor } from '../Api/auth'
 import { toast } from 'react-hot-toast';
 
 const StudentMenu = () => {
@@ -13,7 +13,6 @@ const StudentMenu = () => {
     const [modal, setModal] = useState(false)
     
   
-    console.log(role)
     const modalHandler = email => {
       becomeInstructor(email).then(data => {
         console.log(data)
@@ -43,23 +42,14 @@ const StudentMenu = () => {
                   Become An Instructor?
                 </button>
               )}
+
+
+
             </div>
      
         </React.Fragment>
       );
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
   return (
     <>
       <NavLink
