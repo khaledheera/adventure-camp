@@ -21,7 +21,6 @@ const AddClasses = () => {
       const instructor_name = event.target.instructor_name.value
       const instructor_email = event.target.email.value
       const availableSeats = event.target.seats.value
-      
       const image = event.target.image.files[0]
       setUploadButtonText('Uploading...')
       // Upload image
@@ -31,10 +30,12 @@ const AddClasses = () => {
             className,
             instructor_name,
             instructor_email,
+            students:0,
             availableSeats,
+            status:"pending",
             price: parseFloat(price),
             image: data.data.display_url,
-            host: {
+            instructor: {
               name: user?.displayName,
               image: user?.photoURL,
               email: user?.email,

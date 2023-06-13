@@ -22,25 +22,7 @@ const StudentInstructor = () => {
         <nav>
         {role && role === 'instructor' ? (
           <>
-            <label
-              htmlFor='Toggle3'
-              className='inline-flex w-full justify-center items-center px-2 rounded-md cursor-pointer text-gray-800'
-            >
-              <input
-                onChange={toggleHandler}
-                id='Toggle3'
-                type='checkbox'
-                className='hidden peer'
-              />
-              <span className='px-4 py-1 rounded-l-md bg-sky-400 peer-checked:bg-gray-300'>
-                Student
-              </span>
-              <span className='px-4 py-1 rounded-r-md bg-gray-300 peer-checked:bg-sky-400'>
-                Instructor
-              </span>
-            </label>
-            {/* Menu Links */}
-            {toggle ? <InstructorMenu/> : <StudentMenu/>}
+            <InstructorMenu/>
           </>
         ) : (
           <StudentMenu/>

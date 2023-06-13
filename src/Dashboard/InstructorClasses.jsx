@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Provider/AuthProvider'
-import { getClasses } from '../../Api/classess'
-import ClassDataRow from './ClassDataRow'
+import ClassData from './ClassData'
 
 const InstructorClasses = () => {
   const { user } = useContext(AuthContext)
   const [classes, setClasses] = useState([])
-  const fetchClasses = () => getClasses(user?.email).then(data =>setClasses(data))
+  // const fetchClasses = () => getClasses(user?.email).then(data =>setClasses(data))
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/addclasses/${user?.email}`)
+    fetch(`http://localhost:5000/addClasses/instructor/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -18,9 +17,9 @@ const InstructorClasses = () => {
       });
   }, [user?.email]);
 
-  useEffect(() => {
-    fetchClasses()
-  }, [user])
+  // useEffect(() => {
+  //   fetchClasses()
+  // }, [user])
 
   return (
     <div className='container mx-auto px-4 sm:px-8'>
@@ -66,7 +65,7 @@ const InstructorClasses = () => {
               <tbody>
                 {
                   classes.map(classs => (
-                    <ClassDataRow
+                    <ClassData
                       key={classs?._id}
                       classs={classs}
                     />

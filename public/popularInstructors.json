@@ -2,7 +2,7 @@
     {
         "students":"75",
         "instructorName":"Jet Li",
-        "email":"li@gmail.com",
+      
         "instructorImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7RrgnUzw-zkazuF9GNP4qwI1Jl3M-6M2_aA&usqp=CAU",
         "price":"200"
         
@@ -10,7 +10,7 @@
     {
         "students":"65",
         "instructorName":"Rod Laver",
-        "email":"rod@gmail.com",
+       
         "instructorImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS59Sl-3EK6MLQrkBu_-y-GrH-nAttvRPOu6Q&usqp=CAU",
         "price":"344"
         
@@ -18,7 +18,7 @@
     {
         "students":"60",
         "instructorName":"Tony Jackson",
-        "email":"tony@gmail.com",
+       
         "instructorImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_y5md4-5dbgWLK20EAJAaeZgkf4NxkjUUg&usqp=CAU",
  
         "price":"234"
@@ -27,7 +27,7 @@
     {   
         "students":"55",
         "instructorName":"Steve Holm",
-        "email":"holm@gmail.com",
+  
         "instructorImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrmSe544HTeIZxbLrLUkwoSi1PhDbh65Z0fA&usqp=CAU",
         "availableSeats":"7",   "price":"654"
         
@@ -35,7 +35,7 @@
     {
         "students":"50",
         "instructorName":"Sándor Puhl",
-        "email":"puhl@gmail.com",
+        
         "instructorImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXy0z78uUOBKa0Eon6G5NZv2cVUp-Q06lkPg&usqp=CAU",
       
         "price":"876"
@@ -44,7 +44,7 @@
     {
         "students":"48",
         "instructorName":"Mike Hesson",
-        "email":"mike@gmail.com",
+
         "instructorImg":" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK3s-04PAy01scZCji2_bcfc3liaJ2Wj6uvQ&usqp=CAU",
         "price":"998"
         

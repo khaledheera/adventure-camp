@@ -16,7 +16,7 @@ const Classes = () => {
                     
                        {
                          classes.map(popularClass => <ClassesCard
-                        key={popularClass.id}
+                        key={popularClass._id}
                         popularClass={popularClass}
                         ></ClassesCard>)
                       }

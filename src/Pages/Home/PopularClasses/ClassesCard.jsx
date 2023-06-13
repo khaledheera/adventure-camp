@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ClassesCard = ({ popularClass }) => {
   const { image, className, students, instructor_name, availableSeats, price } =
@@ -15,19 +16,23 @@ const ClassesCard = ({ popularClass }) => {
       </p>
 
       <p>
-        <span className="font-bold">Available Seats: </span>
-        {availableSeats}
-      </p>
-      <p>
         <span className="font-bold">Instructor: </span>
         {instructor_name}
+      </p>
+      <p>
+        <span className="font-bold">Total Students: </span>
+        {students}
+      </p>
+      <p>
+        <span className="font-bold">Available Seats: </span>
+        {availableSeats}
       </p>
       <p>
         <span className="font-bold">Price: $</span>
         {price}
       </p>
 
-      <button className="btn btn-info">Select</button>
+      <Link to='/dashboard/selectedClasses' className="btn btn-info">Select</Link>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Navbar from "../Pages/Shared/Navbar/Navbar";
+import { FaHome} from 'react-icons/fa';
 import { AuthContext } from "../Provider/AuthProvider";
 import logo from "../assets/images/logo/logo.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 import useAdmin from "../Hook/useAdmin";
 import StudentInstructor from "./StudentInstructor";
@@ -15,7 +15,7 @@ const Dashboard = () => {
   // console.log(isAdmin);
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         
@@ -70,6 +70,10 @@ const Dashboard = () => {
             </li>
               </>
             }
+             <div className="divider"></div>
+                    <li><NavLink to="/"><FaHome></FaHome> Home</NavLink> </li>
+                    <li><NavLink to="/classes"> Classes</NavLink></li>
+                    <li><NavLink to="/Instructor">Instructor</NavLink></li>
           </ul>
         </div>
       </div>

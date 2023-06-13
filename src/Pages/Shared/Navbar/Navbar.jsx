@@ -58,6 +58,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={logOut}
+              
               className="inline-block rounded border border-[#20609B]  px-8 py-3 text-sm font-medium    focus:outline-none focus:ring active:text-indigo-500"
             >
               LogOut
