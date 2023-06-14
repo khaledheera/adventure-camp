@@ -5,13 +5,13 @@ const Classes = () => {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/addClasses')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => setClasses(data));
     }, [])
     return (
         <div className='mt-10'>
-                    <h2 className='font-bold text-2xl text-sky-800 text-center'>Popular Classes</h2>
+                    <h2 className='font-bold text-2xl text-sky-800 text-center'>All Classes</h2>
                      <div className='grid grid-cols-3 gap-4 mt-10'>
                     
                        {

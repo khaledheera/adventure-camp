@@ -32,7 +32,7 @@ const AddClasses = () => {
             instructor_email,
             students:0,
             availableSeats,
-            status:"pending",
+            status:"Pending",
             price: parseFloat(price),
             image: data.data.display_url,
             instructor: {
