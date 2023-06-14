@@ -32,7 +32,6 @@ const ClassesCard = ({ popularClass }) => {
         {price}
       </p>
 
-      <Link to='/dashboard/selectedClasses' className="btn btn-info">Select</Link>
     </div>
   );
 };

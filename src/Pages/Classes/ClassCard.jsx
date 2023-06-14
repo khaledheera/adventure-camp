@@ -1,9 +1,64 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider"
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const ClassCard = ({ popularClass }) => {
-  const { image, className, students, instructor_name, availableSeats, price } =
+  const { image, _id,className, students,instructor_email, instructor_name, availableSeats, price } =
     popularClass;
+    const {user}=useContext(AuthContext)
+const navigation=useNavigate()
+
+const handleSelect=()=>{
+  if(!user){
+    
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: `Please Login`,
+        showConfirmButton: false,
+        timer: 1500,});
+        
+    navigation("/login")
+  }
+  const selectedClass={
+    classId:_id,
+    instructor_name:instructor_name,
+    instructor_email:instructor_email,
+    className:className,
+    image,
+    price,
+    email:user?.email,
+  };
+  axios.post (`http://localhost:5000/selected`,selectedClass)
+  .then((data)=>{
+    console.log(data.data);
+    if(data.data.insertedId){
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `Selected`,
+        showConfirmButton: false,
+        timer: 1500,});
+    }
+    else {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: `Already Selected`,
+        showConfirmButton: false,
+        timer: 1500,});
+    } 
+   
+  })
+}
+
+
+
+
+
   return (
     <div className="card lg:w-96 glass px-4 py-5 mx-auto  md:px-24 lg:px-10">
       <img
@@ -29,7 +84,14 @@ const ClassCard = ({ popularClass }) => {
         {price}
       </p>
 
-      <Link to='/dashboard/selectedClasses' className="btn btn-info">Select</Link>
+     <div className="card-action justify-center">
+<button
+onClick={handleSelect}
+className={`px-5 py-5 btn-info ${availableSeats-students=== 0 && "btn-disabled"}`}
+>
+Select
+</button>
+     </div>
     </div>
   );
 };

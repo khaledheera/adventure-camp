@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ClassesCard from '../Home/PopularClasses/ClassesCard';
+import ClassCard from './ClassCard';
 
 const Classes = () => {
     const [classes, setClasses] = useState([]);
@@ -15,10 +16,10 @@ const Classes = () => {
                      <div className='grid grid-cols-3 gap-4 mt-10'>
                     
                        {
-                         classes.map(popularClass => <ClassesCard
+                         classes.map(popularClass => <ClassCard
                         key={popularClass._id}
                         popularClass={popularClass}
-                        ></ClassesCard>)
+                        ></ClassCard>)
                       }
                         
                    </div>

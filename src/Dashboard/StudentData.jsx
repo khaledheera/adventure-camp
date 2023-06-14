@@ -1,7 +1,8 @@
 import React from 'react';
 
-const StudentData = ({classs}) => {
-    const{image, className, students, instructor_name,instructor_email, availableSeats, price }=classs
+const StudentData = ({classes,handleDelete}) => {
+    const{image, className, instructor_name,instructor_email, price ,_id}=classes
+  
     return (
     
             <tr>
@@ -38,7 +39,7 @@ const StudentData = ({classs}) => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
       <div className='flex justify-center'><span className='btn btn-success'>Pay</span>
-      <span className='btn btn-warning'>Delete</span></div>
+      <span  onClick={() => handleDelete(_id)} className='btn btn-warning'>Delete</span></div>
 
       </td>
     
