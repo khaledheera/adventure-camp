@@ -1,23 +1,37 @@
 import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../Provider/AuthProvider'
-// import { getClasses } from '../Api/classess'
 import ClassDataRow from '../Dashboard/ClassDataRow'
+import useAxiosSecure from '../Hook/useAxiosSecure';
+import { AuthContext } from '../Provider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 
 const ManageClasses = () => {
-    const { user } = useContext(AuthContext)
-  const [classes, setClasses] = useState([])
-  // const fetchClasses = () => getClasses(user?.email).then(data =>setClasses(data))
-  useEffect(() => {
-    fetch(`http://localhost:5000/addclasses/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setClasses(data);
-      });
-  }, [user?.email]);
-  // useEffect(() => {
-  //   fetchClasses()
-  // }, [user])
+  const [axiosSecure] = useAxiosSecure();
+  const {user}=useContext(AuthContext)
+
+  const { data: classes = [], refetch } = useQuery({
+queryKey:["manageClasses",user?.email],
+queryFn:async()=>{
+  const data1=axiosSecure.get("/manageClasses")
+  const data2=axiosSecure.get("/updatedClasses")
+  try{
+    const [response1,response2]=await Promise.all([data1,data2]);
+    const combinedResponse=[... response1.data, ... response2.data]
+    return combinedResponse
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+  });
+
+  useEffect(()=>{
+    if(classes.length != 0){
+      refetch()
+    }
+  },[classes,refetch])
+ 
+
+
     return (
         <div className='container mx-auto px-4 sm:px-8'>
         <div className='py-8'>
@@ -63,14 +77,21 @@ const ManageClasses = () => {
                     >
                       Status
                     </th>
+                    <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {
-                    classes.map(classs => (
+                    classes.map(instructorClass => (
                       <ClassDataRow
-                        key={classs?._id}
-                        classs={classs}
+                        key={instructorClass?._id}
+                        instructorClass={instructorClass}
+                        refetch={refetch}
                       />
                     ))}
                 </tbody>

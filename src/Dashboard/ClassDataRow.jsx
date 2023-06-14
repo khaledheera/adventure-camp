@@ -1,7 +1,103 @@
-import React from 'react';
 
-const ClassDataRow = ({classs}) => {
-    const{image, className, students, instructor_name,instructor_email, availableSeats, price }=classs
+import React from 'react';
+import useAxiosSecure from '../Hook/useAxiosSecure';
+import ClassModal from './Modal/ClassModal';
+import Swal from 'sweetalert2';
+
+const ClassDataRow = ({instructorClass,refetch}) => {
+    const{image, className, status, instructor_name,instructor_email, availableSeats, price,feedback,_id }=instructorClass
+    const [axiosSecure] = useAxiosSecure();
+
+    const handleApprove = (updateClass) => {
+      const updateStatus = {
+        status: "Approved",
+      }; 
+      const classUpdateData = {
+        classId: updateClass._id,
+        className: updateClass. className,
+        image:updateClass.image,
+        price:updateClass.price,
+        availableSeats:updateClass.availableSeats,
+        students: updateClass.students,
+        instructor_name:updateClass.instructor_name,
+        instructor_email:updateClass.instructor_email,
+        status: "Approved",
+      }
+      axiosSecure.patch(`/manageClasses/${updateClass._id}`,{
+        updateStatus,
+        classUpdateData
+      })
+.then((data)=>{
+  console.log(data.data);
+  if(
+    data.data.updateResult.modifiedCount>0 &&
+    data.data.addResult.insertedId
+  ){
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Approved`,
+      showConfirmButton: false,
+      timer: 1500,});
+      refetch();
+  }
+  
+})
+.catch((error)=>{
+  console.log(error);
+})
+
+    }
+    const handleDeny = (updateClass) => {
+      const updateStatus = {
+        status: "Denied",
+      }; 
+      const classUpdateData = {
+        classId: updateClass._id,
+        className: updateClass. className,
+        image:updateClass.image,
+        price:updateClass.price,
+        availableSeats:updateClass.availableSeats,
+        students: updateClass.students,
+        instructor_name:updateClass.instructor_name,
+        instructor_email:updateClass.instructor_email,
+        status: "Denied",
+      }
+      axiosSecure.patch(`/manageClasses/${updateClass._id}`,{
+        updateStatus,
+        classUpdateData
+      })
+.then((data)=>{
+  console.log(data.data);
+  if(
+    data.data.updateResult.modifiedCount>0 &&
+    data.data.addResult.insertedId
+  ){
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: `Denied`,
+      showConfirmButton: false,
+      timer: 1500,});
+      refetch();
+  }
+})
+.catch((error)=>{
+  console.log(error);
+})
+
+    }
+
+
+
+
+
+  
+
+
+
+
+
     return (
     
             <tr>
@@ -40,10 +136,29 @@ const ClassDataRow = ({classs}) => {
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
         <p className='text-gray-900 whitespace-no-wrap'>${price}</p>
       </td>
+      <td>{status}</td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
-      <div className='flex justify-center'><span className='btn btn-success'>Approve</span>
-      <span className='btn btn-warning'>Deny</span>
-      <span className='btn btn-neutral'>send feedback</span></div>
+      <button
+      onClick={()=>handleApprove(instructorClass)}
+      className={`hover:scale-110 translate transform hover:underline badge border-green-400 font-bold ${ status ==="Approved"||status ==="Denied"?"btn-disabled":""}`}
+      >
+Approved
+      </button>
+      <hr />
+      <button
+      onClick={()=>handleDeny(instructorClass)}
+      className={`hover:scale-110 translate transform hover:underline badge border-green-400 font-bold ${status ==="Approved"||status ==="Denied"?"btn-disabled":""}`}
+      >
+Deny
+      </button>
+      <hr />
+     <label
+     htmlFor={`modal-${instructorClass.classId}`}
+    className={` cursor-pointer hover:scale-110 translate transform hover:underline badge ${ feedback ? "btn-disabled":''}`}
+     >
+      Feedback
+     </label>
+     <ClassModal id={instructorClass.classId}  refetch={refetch}/>
 
       </td>
     

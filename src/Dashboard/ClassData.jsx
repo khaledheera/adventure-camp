@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ClassData= ({classs}) => {
-    const{image, className, students, instructor_name,instructor_email, availableSeats, price }=classs
+    const{image, className, students, instructor_name,instructor_email, availableSeats, price,status,feedback }=classs
     return (
     
             <tr>
@@ -27,18 +27,16 @@ const ClassData= ({classs}) => {
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
         <p className='text-gray-900 whitespace-no-wrap'>${price}</p>
       </td>
+      
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
-      <div className='flex justify-center'><span className='btn btn-success'>Approve</span>
-      <span className='btn btn-warning'>Deny</span>
-      <span className='btn btn-neutral'>send feedback</span></div>
-
+        {students}
       </td>
+      
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
-        
+        {feedback}
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white '>
-        
-      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white '>{status}</td>
+      
     
                 
             </tr>

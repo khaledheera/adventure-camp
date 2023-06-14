@@ -49,7 +49,7 @@ const AddClasses = () => {
               setUploadButtonText('Uploaded!')
               setLoading(false)
               toast.success('Class Added!')
-              navigate('/Classes')
+              navigate('/dashboard/myClasses')
             })
             .catch(err => console.log(err))
   
