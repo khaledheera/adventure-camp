@@ -32,10 +32,10 @@ const StudentMenu = () => {
         <React.Fragment >
           <div 
             onClick={() => setIsOpen(!isOpen)}
-          className='hidden md:block text-sm font-semibold rounded-full py-3 px-8   transition'>
+          className='hidden md:block text-sm font-semibold rounded-full  px-8   transition'>
             {!role && (
                 <button
-                  className='cursor-pointer hover:bg-neutral-100 py-3 px-4 '
+                  className='cursor-pointer hover:bg-neutral-100  px-4 '
                   onClick={() => setModal(true)}
                   disabled={!user}
                 >

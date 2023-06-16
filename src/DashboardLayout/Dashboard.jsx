@@ -35,13 +35,13 @@ const Dashboard = () => {
           
           <ul className="menu p-4 w-80 h-full bg-cyan-300 text-black">
           <div className="">
-              <Link to='/' className="w-full hidden md:flex py-2 justify-center items-center bg-sky-100 mx-auto">
+              <Link to='/' className="w-40 hidden md:flex  justify-center items-center bg-sky-100 mx-auto">
                 <img src={logo} alt="" />
               </Link>
               <div className="flex flex-col items-center mt-6 -mx-2">
                 <Link to="/dashboard">
                   <img
-                    className="object-cover w-24 h-24 mx-2 rounded-full"
+                    className="object-cover w-24 h-20 mx-2 rounded-full"
                     src={user?.photoURL}
                     alt="avatar"
                     referrerPolicy="no-referrer"
