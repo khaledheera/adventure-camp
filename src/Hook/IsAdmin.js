@@ -4,7 +4,7 @@ const IsAdmin = (email) => {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const [isAdminLoading, setIsAdminLoading] = useState(true);
 
-	fetch(`http://localhost:5000/user/admin/${email}`, {
+	fetch(`https://adventure-camp-server.vercel.app/user/admin/${email}`, {
 		headers: {
 			authorization: `Bearer ${localStorage.getItem('Adventure-camp-token')}`,
 		},

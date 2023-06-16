@@ -14,7 +14,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
+          className={`px-4 py-3 hover:bg-black transition font-semibold ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
         >
@@ -24,7 +24,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/instructor"
-          className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
+          className={`px-4 py-3 hover:bg-black transition font-semibold ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
         >
@@ -34,7 +34,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/classes"
-          className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
+          className={`px-4 py-3 hover:bg-black transition font-semibold ${(
             isActive
           ) => (isActive ? "active" : undefined)}`}
         >
@@ -48,7 +48,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/dashboard"
-              className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
+              className={`px-4 py-3 hover:bg-black transition font-semibold ${(
                 isActive
               ) => (isActive ? "active" : undefined)}`}
             >
@@ -69,7 +69,7 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              className={`px-4 py-3 hover:bg-neutral-100 transition font-semibold ${(
+              className={`px-4 py-3 hover:bg-black transition font-semibold ${(
                 isActive
               ) => (isActive ? "active" : undefined)}`}
               to="/login"
@@ -121,7 +121,7 @@ const Navbar = () => {
   );
 
   return (
-    <div>
+    <div className="bg-teal-950 text-white" >
       <div className="navbar w-[95%] mx-auto pt-6 ">
         <div className="navbar-start">
           <div className="dropdown">

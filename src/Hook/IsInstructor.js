@@ -4,7 +4,7 @@ const IsInstructor = (email) => {
 	const [isSeller, setIsSeller] = useState(false);
 	const [isSellerLoading, setIsSellerLoading] = useState(true);
 
-	fetch(`http://localhost:5000/user/instructor/${email}`, {
+	fetch(`https://adventure-camp-server.vercel.app/user/instructor/${email}`, {
 		headers: {
 			authorization: `Bearer ${localStorage.getItem('Adventure-token')}`,
 		}

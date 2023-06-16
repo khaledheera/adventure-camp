@@ -83,14 +83,14 @@ const AddClassForm = ({
             </div>
             <div className='space-y-1 text-sm'>
                 <label htmlFor='guest' className='block text-gray-600'>
-                Available seats
+               Seats
                 </label>
                 <input
                   className='w-full px-4 py-3 text-gray-800 border border-sky-300 focus:outline-sky-500 rounded-md '
                   name='seats'
                   id='seats'
                   type='number'
-                  placeholder='Available seats'
+                  placeholder='Seats'
                   required
                 />
               </div>

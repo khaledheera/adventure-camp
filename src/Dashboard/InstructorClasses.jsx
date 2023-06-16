@@ -9,7 +9,7 @@ const InstructorClasses = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/addClasses/instructor/${user?.email}`)
+    fetch(`https://adventure-camp-server.vercel.app/addClasses/instructor/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

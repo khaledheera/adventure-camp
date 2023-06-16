@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ClassData= ({classs}) => {
-    const{image, className, students, instructor_name,instructor_email, availableSeats, price,status,feedback }=classs
+    const{image, className, students, instructor_name,instructor_email, seats, price,status,feedback }=classs
     return (
     
             <tr>

@@ -31,6 +31,7 @@ const ClassesCard = ({ popularClass }) => {
         <span className="font-bold">Price: $</span>
         {price}
       </p>
+   
 
     </div>
   );

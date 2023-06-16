@@ -16,7 +16,7 @@ const Dashboard = () => {
   return (
     <>
       {/* <Navbar /> */}
-      <div className="drawer lg:drawer-open">
+      <div className="drawer lg:drawer-open  text-black">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         
         <div className="drawer-content flex flex-col items-center justify-center">
@@ -33,11 +33,11 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 h-full bg-cyan-300 text-black">
           <div className="">
-              <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+              <Link to='/' className="w-full hidden md:flex py-2 justify-center items-center bg-sky-100 mx-auto">
                 <img src={logo} alt="" />
-              </div>
+              </Link>
               <div className="flex flex-col items-center mt-6 -mx-2">
                 <Link to="/dashboard">
                   <img

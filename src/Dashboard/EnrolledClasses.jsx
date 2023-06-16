@@ -3,19 +3,21 @@ import { AuthContext } from '../Provider/AuthProvider'
 // import { getClasses } from '../Api/classess'
 import StudentData from './StudentData'
 import EnrollData from './EnrollData';
+import useAxiosSecure from '../Hook/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const EnrolledClasses = () => {
     const { user } = useContext(AuthContext)
   const [classes, setClasses] = useState([])
+  const [axiosSecure]=useAxiosSecure()
  
-  useEffect(() => {
-    fetch(`http://localhost:5000/addclasses/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setClasses(data);
-      });
-  }, [user?.email]);
+  const {data: enrollClasses = [], refetch } = useQuery({
+    queryKey:["payment",user?.email],
+    queryFn:async()=>{
+      const res=await axiosSecure.get(`payment?email=${user?.email}`);
+      return res.data
+    }
+  })
  
     return (
         <div className='container mx-auto px-4 sm:px-8'>
@@ -61,7 +63,7 @@ const EnrolledClasses = () => {
                 </thead>
                 <tbody>
                   {
-                    classes.map(classs => (
+                    enrollClasses.map(classs => (
                       <EnrollData
                         key={classs?._id}
                         classs={classs}

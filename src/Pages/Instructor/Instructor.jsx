@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import InstructorCard from './InstructorCard';
+import { Helmet } from 'react-helmet-async';
 
 
 const Instructor = () => {
     const [instructors, setInstructors] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes`)
+        fetch(`https://adventure-camp-server.vercel.app/classes`)
             .then(res => res.json())
             .then(data => setInstructors(data));
     }, [])
 
     return (
-        <div className='mt-10 bg-violet-300'>
+        <div className=''>
+          <Helmet>
+			<title> Adventure Camp| Instructor</title>
+			</Helmet>
         <h2 className='font-bold text-2xl text-sky-800 text-center'>Meet Our Instructors</h2>
         <div className='grid grid-cols-3 gap-4 mt-10'>
         

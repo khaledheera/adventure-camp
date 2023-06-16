@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div>
-<footer className="footer items-center p-4 bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800  text-white shadow px-10 py-10">
+<footer className="footer items-center p-4 bg-teal-950 text-white shadow px-10 py-10">
   <div className="items-center grid-flow-col">
   <Link to={"/"}>
               <img src={logo}width='150'

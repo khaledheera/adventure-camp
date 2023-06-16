@@ -6,7 +6,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ClassCard = ({ popularClass }) => {
-  const { image, _id,className, students,instructor_email, instructor_name, availableSeats, price } =
+  const { image, _id,className, students,instructor_email, instructor_name, seats, price } =
     popularClass;
     const {user}=useContext(AuthContext)
 const navigation=useNavigate()
@@ -30,9 +30,10 @@ const handleSelect=()=>{
     className:className,
     image,
     price,
+    name:user?.name,
     email:user?.email,
   };
-  axios.post (`http://localhost:5000/selected`,selectedClass)
+  axios.post (`https://adventure-camp-server.vercel.app/selected`,selectedClass)
   .then((data)=>{
     console.log(data.data);
     if(data.data.insertedId){
@@ -77,17 +78,17 @@ const handleSelect=()=>{
      
       <p>
         <span className="font-bold">Available Seats: </span>
-        {availableSeats}
+        {seats-students}
       </p>
       <p>
-        <span className="font-bold">Price: $</span>
-        {price}
+        <span className="font-bold">Price:</span>
+        ${price}
       </p>
 
      <div className="card-action justify-center">
 <button
 onClick={handleSelect}
-className={`px-5 py-5 btn-info ${availableSeats-students=== 0 && "btn-disabled"}`}
+className={`px-5 py-5 btn-info ${seats-students=== 0 && "btn-disabled"}`}
 >
 Select
 </button>

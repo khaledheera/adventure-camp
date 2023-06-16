@@ -5,7 +5,7 @@ import ClassModal from './Modal/ClassModal';
 import Swal from 'sweetalert2';
 
 const ClassDataRow = ({instructorClass,refetch}) => {
-    const{image, className, status, instructor_name,instructor_email, availableSeats, price,feedback,_id }=instructorClass
+    const{image, className, status, instructor_name,instructor_email, seats, price,feedback,_id }=instructorClass
     const [axiosSecure] = useAxiosSecure();
 
     const handleApprove = (updateClass) => {
@@ -17,7 +17,7 @@ const ClassDataRow = ({instructorClass,refetch}) => {
         className: updateClass. className,
         image:updateClass.image,
         price:updateClass.price,
-        availableSeats:updateClass.availableSeats,
+        seats:updateClass.seats,
         students: updateClass.students,
         instructor_name:updateClass.instructor_name,
         instructor_email:updateClass.instructor_email,
@@ -57,7 +57,7 @@ const ClassDataRow = ({instructorClass,refetch}) => {
         className: updateClass. className,
         image:updateClass.image,
         price:updateClass.price,
-        availableSeats:updateClass.availableSeats,
+        seats:updateClass.seats,
         students: updateClass.students,
         instructor_name:updateClass.instructor_name,
         instructor_email:updateClass.instructor_email,
@@ -130,7 +130,7 @@ const ClassDataRow = ({instructorClass,refetch}) => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
       <p className="mb-2   leading-none" >
-        {availableSeats}
+        {seats}
       </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>

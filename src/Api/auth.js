@@ -5,7 +5,7 @@ export const saveUser = user => {
     ,
   }
 
-  fetch(`http://localhost:5000/users/${user?.email,user?.displayName}`, {
+  fetch(`https://adventure-camp-server.vercel.app/users/${user?.email,user?.displayName}`, {
     method: 'PUT',
     headers: {
       'content-type': 'application/json',
@@ -24,7 +24,7 @@ export const becomeInstructor= email => {
     role: 'instructor',
   }
 
-  return fetch(`http://localhost:5000/users/${email}`, {
+  return fetch(`https://adventure-camp-server.vercel.app/users/${email}`, {
     method: 'PUT',
     headers: {
       'content-type': 'application/json',
@@ -35,7 +35,7 @@ export const becomeInstructor= email => {
 
 
 export const getRole = async email => {
-  const response = await fetch(`http://localhost:5000/users/${email}`)
+  const response = await fetch(`https://adventure-camp-server.vercel.app/users/${email}`)
   const user = await response.json()
   return user?.role
 }

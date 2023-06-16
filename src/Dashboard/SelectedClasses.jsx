@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 
 const SelectedClass = () => {
-  const [selected, setSelected] = useState([]);
+ 
   const [axiosSecure] = useAxiosSecure();
   const{user,loading}=useContext(AuthContext)
   const {data: selectedClass=[],refetch}=useQuery({
@@ -18,46 +18,11 @@ const SelectedClass = () => {
     
   })
 
-  // const handleDelete=(deleteClass)=>{
-  //   axiosSecure
-  //   .delete(`/selected/${deleteClass?._id}`)
-  //   .then((data)=>{
-  //     if (data.data.deletedCount>0){
-  //       Swal.fire({
-  //         position: "top",
-  //         icon: "success",
-  //         title: `Delete Successfully`,
-  //         showConfirmButton: false,
-  //         timer: 1500,});
-  //     }
-  //     refetch();
-  //   })
-  //   .catch((error)=>{
-  //     console.log(error);
-  //   })
-  // }
+ 
 
 
 
-  const handleDelete = (id) => {
-    const proceed = confirm("Are You sure you want to delete");
-    if (proceed) {
-      fetch(`http://localhost:5000/selected/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.deletedCount > 0) {
-            toast.success(`${name} Delete successfully`)
-               
-            const remaining = selected.filter((selected) => selected._id !== id);
-            setSelected(remaining);
-          }
-        });
-    }
-  };
-
+  
  
     return (
         <div className='container mx-auto px-4 sm:px-8'>
@@ -97,7 +62,7 @@ const SelectedClass = () => {
                       scope='col'
                       className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                     >
-                      Status
+                      Action
                     </th>
                   </tr>
                 </thead>
@@ -107,7 +72,7 @@ const SelectedClass = () => {
                       <StudentData
                         key={classes?._id}
                         classes={classes}
-                        handleDelete={handleDelete}
+                        
                       />
                     ))}
                 </tbody>

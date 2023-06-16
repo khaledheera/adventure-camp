@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EnrollData = ({classs}) => {
-    const{image, className, students, instructor_name,instructor_email, availableSeats, price }=classs
+    const{image, className, instructor_name,instructor_email, price,status }=classs
     return (
     
             <tr>
@@ -37,7 +37,7 @@ const EnrollData = ({classs}) => {
         <p className='text-gray-900 whitespace-no-wrap'>${price}</p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white '>
-      <span className='btn btn-success'>Paid</span>
+      <span className=''>{status}</span>
       
 
       </td>

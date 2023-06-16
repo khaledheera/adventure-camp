@@ -14,12 +14,16 @@ import InstructorClasses from '../../Dashboard/InstructorClasses'
 import SelectedClass from '../../Dashboard/SelectedClasses'
 import EnrolledClasses from '../../Dashboard/EnrolledClasses'
 import Instructor from '../../Pages/Instructor/Instructor'
+import Payment from '../../Dashboard/Payment/Payment'
+import ErrorPage from '../../Pages/ErrorPage/ErrorPage'
+import PaymentHistory from '../../Dashboard/Payment/PaymentHistory'
 
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main/>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
         {
             path:"/",
@@ -73,7 +77,17 @@ export const router = createBrowserRouter([
           path:"/dashboard/enrollClass",
           element:<PrivateRoute> <EnrolledClasses/> </PrivateRoute>
         },
+        {
+          path:"/dashboard/paymentHistory",
+          element:<PrivateRoute> <PaymentHistory/> </PrivateRoute>
+        },
+        {
+          path:"/dashboard/payment/:id",
+          element:<Payment/>
+        },
     ]
+        
+  
     
   }
 

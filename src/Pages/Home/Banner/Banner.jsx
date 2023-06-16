@@ -34,7 +34,7 @@ const Banner = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
     return (
-        <div className=''>
+        <div className='bannerClass p-10'>
           <Swiper
         effect={"coverflow"}
         grabCursor={true}
