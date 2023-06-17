@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ClassesCard = ({ popularClass }) => {
-  const { image, className, students, instructor_name, availableSeats, price } =
+  const { image, className, students, instructor_name, seats, price } =
     popularClass;
   return (
     <div className="card lg:w-96 glass px-4 py-5 mx-auto  md:px-24 lg:px-10">
@@ -25,7 +25,7 @@ const ClassesCard = ({ popularClass }) => {
       </p>
       <p>
         <span className="font-bold">Available Seats: </span>
-        {availableSeats}
+        {seats-students}
       </p>
       <p>
         <span className="font-bold">Price: $</span>
